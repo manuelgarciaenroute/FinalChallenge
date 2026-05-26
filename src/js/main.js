@@ -22,4 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
       form.reset();
     });
   }
+
+  const luckyNumberEl = document.getElementById("lucky-number");
+  if (luckyNumberEl) {
+    const luckyNumber = Math.floor(Math.random() * 1000) + 1;
+    luckyNumberEl.textContent = String(luckyNumber);
+  }
 });

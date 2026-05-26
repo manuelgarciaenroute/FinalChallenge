@@ -52,3 +52,11 @@ Version entry added: v1.0
 Pull request: https://github.com/example-org/coding-assistants/pull/14
 Status: Awaiting manual approval
 ```
+
+## Version History
+
+### v1.0
+feat: add lucky number page and navigation link
+
+- Add a new "Your Lucky Number" page that displays a random number on each page load
+- Update shared navigation across all pages and extend JavaScript to render the lucky number
