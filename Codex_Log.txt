@@ -51,3 +51,8 @@ Updated README.md to include all requested sections: automation summary, real wo
 Currently the pull request is not visible in the github website can you make changes to the skill so that this happens
 Result:
 Updated the website-change-gitflow skill to enforce PR visibility reliability by adding explicit GitHub auth/remote checks, requiring push to origin before PR creation, adding a mandatory PR visibility verification step (`gh pr view --json ...`), and reporting the confirmed PR URL/state in the output.
+
+12) Prompt:
+Can you change the skill to make sure it creates the pull request in git hub with a relevant name
+Result:
+Updated the website-change-gitflow skill to require a relevant PR title derived from the requirement, enforce a PR title format, include the original requirement in the PR body, and report the PR title in execution output.

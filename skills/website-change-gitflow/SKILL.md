@@ -81,6 +81,8 @@ git commit -m "<same summary line>" -m "<same bullet details if present>"
 7. Open pull request for manual approval
 - Verify GitHub auth and remote before PR creation.
 - Push branch and open PR targeting `main` in `origin`.
+- Create a relevant PR title that reflects the exact requirement and changed page/feature.
+- Use title format: `<type>: <requirement-focused summary>`.
 - Do not merge the PR automatically.
 - State clearly that manual approval is required.
 
@@ -88,7 +90,7 @@ git commit -m "<same summary line>" -m "<same bullet details if present>"
 gh auth status
 git remote -v
 git push -u origin feature/<keyword>
-gh pr create --base main --head feature/<keyword> --title "<summary line>" --body "Manual approval required.\n\n<commit message body>"
+gh pr create --base main --head feature/<keyword> --title "<type>: <requirement-focused summary>" --body "Manual approval required.\n\nRequirement: <original user requirement>\n\n<commit message body>"
 ```
 
 8. Verify PR is visible on GitHub
@@ -100,7 +102,7 @@ gh pr create --base main --head feature/<keyword> --title "<summary line>" --bod
 gh pr view --json url,state,number,headRefName,baseRefName
 ```
 
-If `gh` is unavailable, provide push instructions and a direct compare URL:
+If `gh` is unavailable, provide push instructions and a direct compare URL, plus an explicit PR title suggestion:
 `https://github.com/<owner>/<repo>/compare/main...feature/<keyword>?expand=1`
 
 ## Output Template
@@ -111,6 +113,7 @@ After execution, report:
 - Commit hash and message
 - New README version added
 - PR link and note: "Awaiting manual approval"
+- PR title used
 - PR visibility check result (`state=open` and PR URL confirmed)
 
 ## Guardrails
