@@ -12,6 +12,7 @@ Execute these steps whenever the user requests a change to the website in `src/`
 - Work only inside the project folder and `src/` subtree unless the workflow requires updating `README.md`.
 - Do not rewrite unrelated files.
 - Keep changes minimal and directly tied to the requirement.
+- Ensure PRs are created against the correct GitHub `origin` repository and are publicly visible to repository collaborators.
 
 ## Step-by-Step Workflow
 
@@ -78,16 +79,29 @@ git commit -m "<same summary line>" -m "<same bullet details if present>"
 ```
 
 7. Open pull request for manual approval
-- Push branch and open PR targeting `main`.
+- Verify GitHub auth and remote before PR creation.
+- Push branch and open PR targeting `main` in `origin`.
 - Do not merge the PR automatically.
 - State clearly that manual approval is required.
 
 ```bash
+gh auth status
+git remote -v
 git push -u origin feature/<keyword>
 gh pr create --base main --head feature/<keyword> --title "<summary line>" --body "Manual approval required.\n\n<commit message body>"
 ```
 
-If `gh` is unavailable, provide push instructions and PR URL template for manual creation.
+8. Verify PR is visible on GitHub
+- Capture the PR URL returned by `gh pr create`.
+- Confirm the PR exists and is open via CLI.
+- Report the URL in final output so it can be opened directly in the browser.
+
+```bash
+gh pr view --json url,state,number,headRefName,baseRefName
+```
+
+If `gh` is unavailable, provide push instructions and a direct compare URL:
+`https://github.com/<owner>/<repo>/compare/main...feature/<keyword>?expand=1`
 
 ## Output Template
 
@@ -97,6 +111,7 @@ After execution, report:
 - Commit hash and message
 - New README version added
 - PR link and note: "Awaiting manual approval"
+- PR visibility check result (`state=open` and PR URL confirmed)
 
 ## Guardrails
 
@@ -104,3 +119,4 @@ After execution, report:
 - Never skip README version update.
 - Keep version increments exactly `+0.1`.
 - Use the same commit message in git commit and README version entry.
+- If `gh pr create` fails, stop and surface the exact error plus next corrective command.
