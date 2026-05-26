@@ -66,3 +66,9 @@ fix: remove literal `r`n text from website navigation
 
 - Replace accidental escaped newline text in navigation markup across all main pages
 - Restore clean nav link rendering for Home, About, Clients, Your Lucky Number, and Contact
+
+### v1.2
+style: set website buttons to blue primary color
+
+- Update shared button color tokens to a blue primary palette
+- Ensure button text and hover state use accessible blue-themed styling
