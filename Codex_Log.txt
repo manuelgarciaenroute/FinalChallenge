@@ -31,3 +31,8 @@ Created README.md describing the Coding Assistants website in src, including pro
 I want you to generate an agent skill that accomplishes the following: whenever I provide you with a requirement to change the website (the one contained in the src folder and it's subdirectories), you must try to complete the requirement by creating a new branch based on main (naming structure should be "feature/" followed by a keyword representing the requirements) then make changes to the existing files or add new ones, then use git stage the changes, come up with a descriptive commit message detailing what you changed, append to the README.md file the same commit message under a header that details the version number (version should start at 1.0 and increase by 0.1 each commit), after that create a pull request that should be manually approved
 Result:
 Created a reusable skill at skills/website-change-gitflow with explicit instructions to implement src website changes via feature branches from main, stage and commit with descriptive messages, append the same message into README.md version history (starting at v1.0 and incrementing by 0.1), and open a pull request that remains pending manual approval.
+
+7) Prompt:
+I want you to move all of the files under the FinalChallenge folder up one level and delete the folder
+Result:
+Moved all files and folders from the inner FinalChallenge directory to the parent project directory, then deleted the now-empty inner FinalChallenge folder.
