@@ -78,3 +78,9 @@ style: change website background to light yellow-to-purple gradient
 
 - Update global page background to a gradient from light yellow to light purple
 - Keep the existing layout and component styling while refreshing overall page ambiance
+
+### v1.4
+feat: add projects page with famous website-inspired portfolio
+
+- Add new Projects page showcasing Coding Assistants work inspired by major web platforms
+- Add Projects navigation link across all existing website pages
