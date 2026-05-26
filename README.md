@@ -45,7 +45,7 @@ A coding assistant helps enforce consistency across repetitive but failure-prone
    - `git checkout main`
    - `git pull --ff-only origin main`
 
-## How to use it
+## How it works
 1. Provide a website requirement.
 2. Create a feature branch from `main`: `feature/<keyword>`.
 3. Implement updates under `src/`.
@@ -57,6 +57,12 @@ A coding assistant helps enforce consistency across repetitive but failure-prone
 8. Commit using the same message text added to `README.md`.
 9. Push the branch to `origin`.
 10. Open/verify PR to `main` with a relevant title and leave it pending manual approval.
+
+## How to use it
+1. Provide a website requirement to codex asking it to do something to the website using the website-change-gitflow skill. 
+2. A series of authorizations will be asked by codex to approve (mostly git commands and file edits).
+3. Check in the github webiste a PR will be created with all of the relevant title, changes and description.
+4. If all of the changes are ok someone must manually approve the PR in github.
 
 ## Example output
 ```text
