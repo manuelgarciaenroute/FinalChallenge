@@ -1,0 +1,33 @@
+Codex Prompt Log
+================
+
+1) Prompt:
+Please work exclusively under the FinalChallenge folder any file you need to generate should be in this directory or one of the subdirectories
+Result:
+Confirmed and constrained all work to the FinalChallenge directory and its subdirectories.
+
+2) Prompt:
+I want you to create a file called Codex_Log.txt in this file I want you to write all of the prompts I tell you (including this one) and write a brief description of what was done as a result of each prompt
+Result:
+Created Codex_Log.txt inside FinalChallenge and started logging user prompts with brief outcome summaries.
+
+3) Prompt:
+Create a folder called src, in this folder I want you to generate a simple website representing a company called "Coding Assistants" the website should be composed of mainly html, javascript and css files each type of file under their correspoonding folder under the src subdirectory. The website should have a front page, an about page, a contact page and a clients page. All information under each one of these pages you can generate any way you want
+Result:
+Created src with separate html, css, and js folders and implemented a simple multi-page Coding Assistants website (Home, About, Clients, Contact) with shared styling and JavaScript behavior.
+
+
+4) Prompt:
+Please rename the project folder to FinalChallenge and ensure all mentions in the log or any other file reflect this change
+Result:
+Renamed the project folder to FinalChallenge and updated all file mentions to use FinalChallenge.
+
+5) Prompt:
+I want you to generate a readme file called "README.md" that contains the description of the website you generated in the src directory as well as each one of it's main pages
+Result:
+Created README.md describing the Coding Assistants website in src, including project structure, shared assets, and summaries of the Home, About, Clients, and Contact pages.
+
+6) Prompt:
+I want you to generate an agent skill that accomplishes the following: whenever I provide you with a requirement to change the website (the one contained in the src folder and it's subdirectories), you must try to complete the requirement by creating a new branch based on main (naming structure should be "feature/" followed by a keyword representing the requirements) then make changes to the existing files or add new ones, then use git stage the changes, come up with a descriptive commit message detailing what you changed, append to the README.md file the same commit message under a header that details the version number (version should start at 1.0 and increase by 0.1 each commit), after that create a pull request that should be manually approved
+Result:
+Created a reusable skill at skills/website-change-gitflow with explicit instructions to implement src website changes via feature branches from main, stage and commit with descriptive messages, append the same message into README.md version history (starting at v1.0 and incrementing by 0.1), and open a pull request that remains pending manual approval.

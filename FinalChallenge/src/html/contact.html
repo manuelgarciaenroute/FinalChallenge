@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coding Assistants | Contact</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../js/main.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="nav-wrap">
+      <div class="brand">Coding Assistants</div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="clients.html">Clients</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h1>Contact Us</h1>
+      <p>Tell us what you are building and where you need technical support.</p>
+    </section>
+
+    <form id="contact-form">
+      <label for="name">Name
+        <input type="text" id="name" name="name" required>
+      </label>
+
+      <label for="email">Email
+        <input type="email" id="email" name="email" required>
+      </label>
+
+      <label for="message">Message
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </label>
+
+      <button type="submit">Send Message</button>
+      <div id="form-message" aria-live="polite"></div>
+    </form>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> Coding Assistants. All rights reserved.
+  </footer>
+</body>
+</html>

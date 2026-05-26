@@ -1,0 +1,3 @@
+display_name: Website Change Git Flow
+short_description: Apply website requirements in src with branch, commit, README versioning, and PR creation.
+default_prompt: Use this skill whenever a website change is requested for src. Follow the branch-commit-version-PR workflow exactly and require manual PR approval.
