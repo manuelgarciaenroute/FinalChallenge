@@ -76,3 +76,13 @@ Updated .github/workflows/auto-pr-on-feature-push.yml to trigger on non-main bra
 Using the website-change-gitflow skill make it so all of the buttons on the website have blue as their primary color
 Result:
 Executed the website-change-gitflow process on branch feature/blue-buttons, updated shared CSS tokens and button styles so buttons use blue as the primary color (including hover/text contrast), added README Version History entry v1.2 with the same commit message text, committed, and pushed the branch with a PR creation link for manual approval.
+
+17) Prompt:
+Using the  website-change-gitflow skill make it so the background of the webiste is a gradient ranging from light yellow to light purple
+Result:
+Executed the website-change-gitflow process on branch feature/yellow-purple-gradient, updated the global CSS background to a light yellow-to-light purple gradient, added README Version History entry v1.3 with the same commit message text, committed, and pushed the branch with a PR creation link for manual approval.
+
+18) Prompt:
+Change the  website-change-gitflow skill so that the changes to Codex_Log.txt are commited as well
+Result:
+Updated website-change-gitflow to require staging and committing Codex_Log.txt together with src and README.md changes, and added guardrails so Codex_Log.txt updates cannot be left uncommitted.
