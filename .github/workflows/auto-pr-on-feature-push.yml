@@ -1,19 +1,19 @@
-name: Auto PR on Feature Push
+name: Auto PR and Update Description on Push
 
 on:
   push:
-    branches:
-      - "feature/**"
+    branches-ignore:
+      - "main"
 
 permissions:
   contents: read
   pull-requests: write
 
 jobs:
-  create-pr:
+  create-or-update-pr:
     runs-on: ubuntu-latest
     steps:
-      - name: Create PR if one does not exist
+      - name: Create PR and update description
         uses: actions/github-script@v7
         with:
           script: |
@@ -21,6 +21,51 @@ jobs:
             const repo = context.repo.repo;
             const head = context.ref.replace('refs/heads/', '');
             const base = 'main';
+
+            if (!head || head === base) {
+              core.info(`Skipping because branch is '${head || "unknown"}'.`);
+              return;
+            }
+
+            const pushedCommits = context.payload.commits || [];
+            const commitLines = pushedCommits.length
+              ? pushedCommits.map((c) => `- ${c.message.split('\n')[0]} (\`${c.id.slice(0, 7)}\`)`)
+              : ['- No commit metadata available in payload'];
+
+            const changedFiles = [...new Set(
+              pushedCommits.flatMap((c) => [
+                ...(c.added || []),
+                ...(c.modified || []),
+                ...(c.removed || [])
+              ])
+            )];
+
+            const fileLines = changedFiles.length
+              ? changedFiles.map((f) => `- \`${f}\``)
+              : ['- No file list available in payload'];
+
+            const header = [
+              'This pull request is automatically managed by GitHub Actions.',
+              '',
+              `- Source branch: \`${head}\``,
+              `- Target branch: \`${base}\``,
+              '',
+              'Manual approval is required before merge.'
+            ].join('\n');
+
+            const changesSection = [
+              '## Latest Push Changes',
+              '',
+              `Updated: ${new Date().toISOString()}`,
+              '',
+              '### Commits in this push',
+              ...commitLines,
+              '',
+              '### Files touched in this push',
+              ...fileLines
+            ].join('\n');
+
+            const body = `${header}\n\n${changesSection}`;
 
             const existing = await github.rest.pulls.list({
               owner,
@@ -30,30 +75,29 @@ jobs:
               base
             });
 
-            if (existing.data.length > 0) {
-              core.info(`Open PR already exists: #${existing.data[0].number}`);
-              return;
-            }
-
             const commitMessage = (context.payload.head_commit?.message || '').split('\n')[0].trim();
             const defaultTitle = `feat: merge ${head} into ${base}`;
             const title = commitMessage || defaultTitle;
-            const body = [
-              'This pull request was created automatically after pushing a feature branch.',
-              '',
-              `- Source branch: \`${head}\``,
-              `- Target branch: \`${base}\``,
-              '',
-              'Manual approval is required before merge.'
-            ].join('\n');
 
-            const pr = await github.rest.pulls.create({
+            if (existing.data.length === 0) {
+              const pr = await github.rest.pulls.create({
+                owner,
+                repo,
+                title,
+                head,
+                base,
+                body
+              });
+              core.info(`Created PR #${pr.data.number}: ${pr.data.html_url}`);
+              return;
+            }
+
+            const pr = existing.data[0];
+            await github.rest.pulls.update({
               owner,
               repo,
-              title,
-              head,
-              base,
+              pull_number: pr.number,
+              title: pr.title || title,
               body
             });
-
-            core.info(`Created PR #${pr.data.number}: ${pr.data.html_url}`);
+            core.info(`Updated PR #${pr.number}: ${pr.html_url}`);

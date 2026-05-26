@@ -66,3 +66,8 @@ Applied the website-change-gitflow process on branch feature/remove-rn-navigatio
 In the current branch accomodate for a git workflow that creates a PR one a new feature branch is pushed
 Result:
 Added a GitHub Actions workflow at .github/workflows/auto-pr-on-feature-push.yml that triggers on pushes to feature/* branches and automatically creates a PR to main when no open PR already exists, using the latest commit subject as the PR title when available.
+
+15) Prompt:
+Create a GitHub Actions workflow that: once a branch is pushed it should create a PR from that branch to main and also each time updates are pushed to the branch its description should be updated with the changes
+Result:
+Updated .github/workflows/auto-pr-on-feature-push.yml to trigger on non-main branch pushes, automatically create a PR to main when missing, and update the existing PR description on every push with the latest pushed commits and touched files.
