@@ -56,3 +56,13 @@ Updated the website-change-gitflow skill to enforce PR visibility reliability by
 Can you change the skill to make sure it creates the pull request in git hub with a relevant name
 Result:
 Updated the website-change-gitflow skill to require a relevant PR title derived from the requirement, enforce a PR title format, include the original requirement in the PR body, and report the PR title in execution output.
+
+13) Prompt:
+Using the skill website-change-gitflow I want you to change the website so that the following characters `r`n  don't appear in the navigation
+Result:
+Applied the website-change-gitflow process on branch feature/remove-rn-navigation, removed literal `r`n tokens from navigation markup across the main HTML pages, updated README.md Version History to v1.1 with the same commit message, committed and pushed the branch to origin, and provided the GitHub PR creation link with a relevant PR title suggestion.
+
+14) Prompt:
+In the current branch accomodate for a git workflow that creates a PR one a new feature branch is pushed
+Result:
+Added a GitHub Actions workflow at .github/workflows/auto-pr-on-feature-push.yml that triggers on pushes to feature/* branches and automatically creates a PR to main when no open PR already exists, using the latest commit subject as the PR title when available.
