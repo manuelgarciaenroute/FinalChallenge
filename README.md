@@ -60,3 +60,9 @@ feat: add lucky number page and navigation link
 
 - Add a new "Your Lucky Number" page that displays a random number on each page load
 - Update shared navigation across all pages and extend JavaScript to render the lucky number
+
+### v1.1
+fix: remove literal `r`n text from website navigation
+
+- Replace accidental escaped newline text in navigation markup across all main pages
+- Restore clean nav link rendering for Home, About, Clients, Your Lucky Number, and Contact
