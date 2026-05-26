@@ -1,6 +1,6 @@
 ---
 name: website-change-gitflow
-description: Implement requested website changes for the project under src and its subdirectories using a strict Git flow. Use when the user asks to modify the website: create a new branch from main named feature/<requirement-keyword>, apply file changes, stage and commit with a descriptive message, append the same commit message to README.md under an incremented version header (starting at 1.0 and increasing by 0.1 each commit), then open a pull request for manual approval.
+description: Implement requested website changes for the project under src and its subdirectories using a strict Git flow. Use when the user asks to modify the website: create a new branch from main named feature/<requirement-keyword>, apply file changes, stage and commit with a descriptive message, append the same commit message to README.md under an incremented version header (starting at 1.0 and increasing by 0.1 each commit), include Codex_Log.txt updates in the same commit, then open a pull request for manual approval.
 ---
 
 # Website Change Git Flow
@@ -35,7 +35,7 @@ git checkout -b feature/<keyword>
 
 3. Stage all related changes
 ```bash
-git add src README.md
+git add src README.md Codex_Log.txt
 ```
 If additional related files were changed, stage them explicitly.
 
@@ -70,11 +70,11 @@ feat: update homepage hero copy
 ```
 
 6. Commit
-- Stage again after README update.
+- Stage again after README update and Codex_Log update.
 - Commit using the same message appended to README.
 
 ```bash
-git add src README.md
+git add src README.md Codex_Log.txt
 git commit -m "<same summary line>" -m "<same bullet details if present>"
 ```
 
@@ -120,6 +120,7 @@ After execution, report:
 
 - Never merge the PR automatically.
 - Never skip README version update.
+- Never leave Codex_Log.txt changes unstaged or uncommitted.
 - Keep version increments exactly `+0.1`.
 - Use the same commit message in git commit and README version entry.
 - If `gh pr create` fails, stop and surface the exact error plus next corrective command.
