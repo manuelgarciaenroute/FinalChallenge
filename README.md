@@ -1,56 +1,86 @@
 # Coding Assistants Website Automation
 
 ## What it does
-This project automates how website change requests are executed for the Coding Assistants site in `src/` by using a repeatable Git workflow: create a feature branch from `main`, apply edits to HTML/CSS/JS files, stage and commit with a descriptive message, record the same message in `README.md` under an incremented version entry, and open a pull request that waits for manual approval.
+This project maintains the **Coding Assistants** website in `src/` and automates how website change requests are delivered: create a feature branch from `main`, implement the requested HTML/CSS/JS updates, record the same descriptive commit message in `README.md` version history, include `Codex_Log.txt` updates in the same commit, and create a pull request for manual approval.
 
 ## What work-role task it solves
-As a software engineer maintaining a small marketing website, the real recurring problem is handling frequent content/design updates without losing traceability. This automation solves the operational task of turning ad-hoc requests into controlled, reviewable change sets so every update has a branch, commit record, version note, and PR.
+As a software engineer maintaining a marketing and portfolio website, the recurring operational issue is shipping frequent copy/design/content updates without losing process discipline. This setup turns ad-hoc requests into a predictable workflow with branch isolation, clear commit history, documented release notes, and reviewable pull requests.
 
 ## Why it needs a coding assistant
-A coding assistant is useful because the workflow is procedural and easy to do inconsistently under time pressure. For example, it can consistently generate a branch name like `feature/update-home-hero`, apply changes across multiple files (`src/html/index.html`, `src/css/styles.css`, `src/js/main.js`), write a commit message that actually explains what changed, increment versions predictably (`v1.0`, `v1.1`, `v1.2`), and prepare a PR that is explicitly marked for manual approval.
+A coding assistant helps enforce consistency across repetitive but failure-prone steps. For example, it can update multiple pages consistently when navigation changes, keep version history increments exact (`+0.1`), ensure `Codex_Log.txt` is committed with website updates, and apply a relevant PR title/body format so reviewers immediately understand the requirement and scope.
+
+## Current website structure
+- `src/html/index.html` - Home
+- `src/html/about.html` - About
+- `src/html/clients.html` - Clients
+- `src/html/projects.html` - Projects
+- `src/html/your-lucky-number.html` - Lucky number generator page
+- `src/html/contact.html` - Contact form
+- `src/css/styles.css` - Shared styling
+- `src/js/main.js` - Shared client-side behavior
+
+## Project automation components
+- `skills/website-change-gitflow/SKILL.md`  
+  Skill that defines the branch -> change -> stage -> version -> commit -> PR process.
+- `.github/workflows/auto-pr-on-feature-push.yml`  
+  GitHub Actions workflow that, on push to non-`main` branches, creates a PR to `main` if missing and updates existing PR descriptions with the latest pushed commits/files.
+- `Codex_Log.txt`  
+  Prompt/result log that is required to be included in commits when using `website-change-gitflow`.
 
 ## How to set it up
 ### Prerequisites
-- Git installed and repository initialized.
-- GitHub CLI (`gh`) installed and authenticated (`gh auth login`) if you want automated PR creation.
-- Existing website files under `src/`.
-- Skill file available at `skills/website-change-gitflow/SKILL.md`.
+- Git installed
+- GitHub repository with `main` branch and `origin` remote configured
+- Website files under `src/`
+- Skill file at `skills/website-change-gitflow/SKILL.md`
+- Optional: GitHub CLI (`gh`) installed and authenticated (`gh auth login`) for local PR creation/verification commands
 
 ### Installation steps
-1. Clone the repository and enter the project directory.
-2. Confirm the skill exists at `skills/website-change-gitflow/SKILL.md`.
-3. Ensure `main` is available locally and remotely.
-4. If using PR automation, run `gh auth status` to verify authentication.
+1. Clone the repository and open the project folder.
+2. Confirm these files exist:
+   - `skills/website-change-gitflow/SKILL.md`
+   - `.github/workflows/auto-pr-on-feature-push.yml`
+3. Verify remote and branch baseline:
+   - `git remote -v`
+   - `git checkout main`
+   - `git pull --ff-only origin main`
 
 ## How to use it
-1. Provide a website requirement (for example: "Update the clients page with two new client cards").
-2. Create a branch from `main` named `feature/<keyword>`.
-3. Apply required edits under `src/`.
-4. Stage the changes with `git add src README.md`.
-5. Write a descriptive commit message for the requirement.
-6. Append the same commit message under `## Version History` in this file using the next version (`1.0`, then `+0.1` each commit).
-7. Commit changes using the same message content.
-8. Push the branch and create a PR targeting `main`.
-9. Leave the PR pending manual approval (do not merge automatically).
+1. Provide a website requirement.
+2. Create a feature branch from `main`: `feature/<keyword>`.
+3. Implement updates under `src/`.
+4. Write a descriptive commit message.
+5. Append the exact same commit message under `## Version History` using the next version (`1.0`, then `+0.1` each commit).
+6. Append the prompt/result entry to `Codex_Log.txt`.
+7. Stage required files:
+   - `git add src README.md Codex_Log.txt`
+8. Commit using the same message text added to `README.md`.
+9. Push the branch to `origin`.
+10. Open/verify PR to `main` with a relevant title and leave it pending manual approval.
 
 ## Example output
 ```text
-Branch created: feature/update-clients-page
+Branch created: feature/projects-page
 Files changed:
+- src/html/projects.html
+- src/html/index.html
+- src/html/about.html
 - src/html/clients.html
-- src/css/styles.css
+- src/html/contact.html
+- src/html/your-lucky-number.html
 - README.md
+- Codex_Log.txt
 
-Commit: 3f8a21c
+Commit: e97aa5d
 Message:
-feat: add two enterprise client cards to clients page
+feat: add projects page with famous website-inspired portfolio
 
-- Added Helios Systems and Northwind Robotics cards
-- Adjusted clients grid spacing for better mobile layout
+- Add new Projects page showcasing Coding Assistants work inspired by major web platforms
+- Add Projects navigation link across all existing website pages
 
-Version entry added: v1.0
-Pull request: https://github.com/example-org/coding-assistants/pull/14
-Status: Awaiting manual approval
+Version entry added: v1.4
+PR title: feat: add projects page with famous website-inspired portfolio
+PR status: Awaiting manual approval
 ```
 
 ## Version History
