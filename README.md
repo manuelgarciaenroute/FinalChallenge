@@ -72,3 +72,9 @@ style: set website buttons to blue primary color
 
 - Update shared button color tokens to a blue primary palette
 - Ensure button text and hover state use accessible blue-themed styling
+
+### v1.3
+style: change website background to light yellow-to-purple gradient
+
+- Update global page background to a gradient from light yellow to light purple
+- Keep the existing layout and component styling while refreshing overall page ambiance
