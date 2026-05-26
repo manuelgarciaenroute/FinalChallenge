@@ -114,3 +114,9 @@ feat: add projects page with famous website-inspired portfolio
 
 - Add new Projects page showcasing Coding Assistants work inspired by major web platforms
 - Add Projects navigation link across all existing website pages
+
+### v1.5
+feat: add two new projects to projects page portfolio
+
+- Add CodeHarbor (GitHub-inspired) project entry to the Projects page
+- Add TuneFlow (Spotify-inspired) project entry to the Projects page
