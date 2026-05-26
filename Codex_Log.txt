@@ -71,3 +71,8 @@ Added a GitHub Actions workflow at .github/workflows/auto-pr-on-feature-push.yml
 Create a GitHub Actions workflow that: once a branch is pushed it should create a PR from that branch to main and also each time updates are pushed to the branch its description should be updated with the changes
 Result:
 Updated .github/workflows/auto-pr-on-feature-push.yml to trigger on non-main branch pushes, automatically create a PR to main when missing, and update the existing PR description on every push with the latest pushed commits and touched files.
+
+16) Prompt:
+Using the website-change-gitflow skill make it so all of the buttons on the website have blue as their primary color
+Result:
+Executed the website-change-gitflow process on branch feature/blue-buttons, updated shared CSS tokens and button styles so buttons use blue as the primary color (including hover/text contrast), added README Version History entry v1.2 with the same commit message text, committed, and pushed the branch with a PR creation link for manual approval.
